@@ -1,1 +1,1 @@
-# shopme
+# ecommerce-springbootjava-mysql

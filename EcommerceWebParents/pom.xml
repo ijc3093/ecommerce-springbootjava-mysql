@@ -21,8 +21,8 @@
 	</properties>
 	
 	<modules>
-		<module>BackEnd</module>
-		<module>FrontEnd</module>
+		<module>Backend</module>
+		<module>Frontend</module>
 	</modules>
 	<dependencies>
 		<dependency>

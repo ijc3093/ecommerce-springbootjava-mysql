@@ -43,11 +43,13 @@
 		</div>
 		<div>
 			<h2>Manage Users</h2>	
-			<a th:href="@{/users/new}">Create New User</a>
+			<a th:href="@{/users/new}"><i class="fa-solid fa-user-plus fa-2x"></i></a>
 			&nbsp; |&nbsp;
-			<a th:href="@{/users/export/csv}">Export to CSV</a>
+			<a th:href="@{/users/export/csv}"><i class="fa-solid fa-file-csv fa-2x"></i></a>
 			&nbsp; |&nbsp;
-			<a th:href="@{/users/export/excel}">Export to Excel</a>
+			<a th:href="@{/users/export/excel}"><i class="fa-solid fa-file-excel fa-2x"></i></a>
+			&nbsp; |&nbsp;
+			<a th:href="@{/users/export/pdf}"><i class="fa-solid fa-file-pdf fa-2x"></i></a>
 		</div>
 		
 		<div th:if="${message != null}" class="alert alert-success text-center">
@@ -61,13 +63,17 @@
 				Filter:&nbsp;
 				<input type="search" name="keyword" th:value="${keyword}" class="form-control" required />
 				&nbsp;&nbsp;
-				<input type="submit" value="search" class="btn btn-primary" />
+				<button type="submit" value="search" class="btn btn-primary">
+					<li class="fas fa-search"></li>
+				</button>
 				&nbsp;&nbsp;
-				<input type="button" value="clear" class="btn btn-secondary" onclick="clearFilter()"/>
+				<button type="button" value="clear" class="btn btn-secondary" onclick="clearFilter()">
+					<li class="fas fa-eraser"></li>
+				</button>
 			</form>
 		</div>
 		
-		<div>
+		<div class="full-details">
 			<table class="table table-bordered table-striped table-hover table-responsive-xl">
 				<thead class="thead-dark">
 					<tr>
@@ -118,6 +124,41 @@
 			</table>
 		</div>
 		
+		<div class="less-details">
+			<div th:each="user : ${listUsers}" class="row m-1">
+				<div class="col">
+					<span th:if="${user.photos == null} "class="fas fa-portrait fa-3x icon-dark"></span>
+					<img th:if="${user.photos !=null}" th:src="@{${user.photosImagePath}}" style="width: 80px; heigh:80px"/>
+				</div>
+				
+				<div class="col">
+					<div>[[${user.getFullName}]]</div>
+					<div>[[${user.roles}]]</div>
+				</div>
+				
+				<div>
+					<a th:if="${user.enabled == true}" class="fas fa-check-circle fa-2x icon-green" 
+					th:href="@{'/users/' + ${user.id} + '/enabled/false'}" title="Disable this user"></a>
+					
+					<a th:if="${user.enabled == false}" class="fas fa-circle fa-2x icon-dark" 
+					th:href="@{'/users/' + ${user.id} + '/enabled/true'}" title="Enabled this user"></a>
+				</div>
+				
+				<div>
+					<a class="fas fa-edit fa-2x icon-green" th:href="@{'/users/edit/' + ${user.id}}" title="Edit this user"></a> 
+						&nbsp; 
+					<a class="fas fa-trash fa-2x icon-red link-delete" 
+					th:href="@{'/users/delete/' + ${user.id}}" 
+					th:userId="${user.id}"
+					title="Delete this user"></a>
+				</div>
+			</div>
+			
+			
+			
+			<div>&nbsp;</div>
+		</div>
+
 		<div class="text-center m-1" th:if="${totalItems > 0}">
 			<span>Showing users # [[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
 		</div>
@@ -141,6 +182,7 @@
 		<div class="text-center m-1">
 			<span>No users found</span>
 		</div>
+		
 		<div class="modal fade text-center" id="confirmModal">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -161,7 +203,7 @@
 		</div>
 		
 		<div class="text-center">
-			<p>Shopme Control Panel - Copyright &copy; Shopme</p>
+			<p>Shopme Control Panel - Copyright &copy; Ecommerce</p>
 		</div>
 		
 	</div>

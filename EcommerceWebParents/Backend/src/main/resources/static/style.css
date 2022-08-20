@@ -4,6 +4,13 @@
 *.icon-dark{color: gray}
 *.icon-red{color: red}
 
+
+div.position_fixed {
+	position: fixed;
+}
+
+
+
 @media screen and (max-width: 768px){
 	/* small screen */
 	div.full-details {display:none}

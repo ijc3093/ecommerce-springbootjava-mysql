@@ -21,10 +21,12 @@ div.position_fixed {
 	/* medium screen */
 	div.full-details {display:block;}
 	div.less-details {display:none;}
+	th, td .hideable-column{display: none}
 }
 
 @media screen and (min-width: 1024px){
 	/* medium screen */
 	div.less-details {display:none;}
+	th, td .hideable-column{display: table-cell;}
 	
 }

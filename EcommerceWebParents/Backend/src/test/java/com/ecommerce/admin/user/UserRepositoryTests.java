@@ -31,13 +31,13 @@ public class UserRepositoryTests {
 	//Create Method and run using JUnit
 	@Test
 	public void testCreateUser() {
-		Role roleAdmin = entityManager.find(Role.class, 1);
-		User izz1 = new User("izz@gmail1.com", "name2022", "Izz", "Iczz");
-		User izz2 = new User("izz@gmail2.com", "name2022", "Izz", "Iczz");
-		User izz3 = new User("izz@gmail3.com", "name2022", "Izz", "Iczz");
-		User izz4 = new User("izz@gmail4.com", "name2022", "Izz", "Iczz");
-		User izz5 = new User("izz@gmail5.com", "name2022", "Izz", "Iczz");
-		User izz6 = new User("izz@gmail6.com", "name2022", "Izz", "Iczz");
+		Role roleAdmin = entityManager.find(Role.class, 6);
+		User izz1 = new User("john@gmail.com", "Wayne#12", "john", "Wayne");
+		User izz2 = new User("lionel@gmail.com", "Messi#10", "lionel", "Messi");
+		User izz3 = new User("thierry@gmail.com", "Henry#14", "thierry", "Henry");
+		User izz4 = new User("samuel@gmail.com", "Eto'#9", "samuel", "Eto'");
+		User izz5 = new User("wayne@gmail.com", "Rooney#10", "wayne", "Rooney");
+		User izz6 = new User("cristiano@gmail.com", "Ronaldo#7", "cristiano", "Ronaldo");
 		
 		izz1.addRole(roleAdmin);
 		izz2.addRole(roleAdmin);
@@ -54,18 +54,18 @@ public class UserRepositoryTests {
 		User savedUser6 = repo.save(izz6);
 		
 		assertThat(savedUser1.getId()).isGreaterThan(0);
-		assertThat(savedUser2.getId()).isGreaterThan(0);
-		assertThat(savedUser3.getId()).isGreaterThan(0);
-		assertThat(savedUser4.getId()).isGreaterThan(0);
-		assertThat(savedUser5.getId()).isGreaterThan(0);
-		assertThat(savedUser5.getId()).isGreaterThan(0);
+		assertThat(savedUser2.getId()).isGreaterThan(1);
+		assertThat(savedUser3.getId()).isGreaterThan(2);
+		assertThat(savedUser4.getId()).isGreaterThan(3);
+		assertThat(savedUser5.getId()).isGreaterThan(4);
+		assertThat(savedUser6.getId()).isGreaterThan(5);
 		
 	}
 
 	//Create Method and run using JUnit
 	@Test
 	public void testCreateNewUserWithTwoRoles() {
-		User izz = new User("izz@gmail7.com", "izz2022", "izz", "iczz");
+		User izz = new User("Gaúcho@gmail.com", "Ronaldinho#10", "Gaúcho", "Ronaldinho");
 		Role roleEditor = new Role(3);
 		Role roleAssistant = new Role(5);
 		
@@ -98,7 +98,7 @@ public class UserRepositoryTests {
 	public void testUpdateUserDetails() {
 		User izzUser = repo.findById(4).get();
 		izzUser.setEnabled(true);
-		izzUser.setEmail("izz@outlook.com");
+		izzUser.setEmail("sam@gmail.com");
 		
 		repo.save(izzUser);
 	}
@@ -126,7 +126,7 @@ public class UserRepositoryTests {
 	//Get user by email
 	@Test
 	public void testGetUserByEmail() {
-		String email = "izz@gmail1.com";
+		String email = "john@gmail.com";
 		User user = repo.getUserByEmail(email);
 		assertThat(user).isNotNull();
 	}
@@ -134,7 +134,7 @@ public class UserRepositoryTests {
 	//Test Count By Id
 	@Test
 	public void testCountById() {
-		Integer id = 1;
+		Integer id = 2;
 		Long counById = repo.countById(id);
 		assertThat(counById).isNotNull().isGreaterThan(0);
 	}
@@ -150,7 +150,7 @@ public class UserRepositoryTests {
 	//Enabled
 	@Test
 	public void tesEnableUser() {
-		Integer id = 67;
+		Integer id = 1;
 		repo.updateEnabledStatus(id, true);
 	}
 	
@@ -170,7 +170,7 @@ public class UserRepositoryTests {
 	//Search Users
 	@Test
 	public void testSearchUsers() {
-		String keyword = "Izz";
+		String keyword = "Sam";
 		int pageNumber = 0;
 		int pageSize = 4;
 		

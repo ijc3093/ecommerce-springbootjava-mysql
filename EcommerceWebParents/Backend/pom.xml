@@ -10,8 +10,8 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>Backend</artifactId>
-	<name>Backend</name>
+	<artifactId>BackEnd</artifactId>
+	<name>BackEnd</name>
 	<description>Ecommerce Admin project</description>
 
 	<properties>

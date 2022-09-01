@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
- 	<head th:replace="fragments :: page_head('Home - Shopme Admin', 'none')" />
+ 	<head th:replace="fragments :: page_head('User - Ecommerce Admin', 'none')" />
 	
 	<body style="background-color: #c3b4b4;">
 
@@ -170,19 +170,8 @@
 		<div th:replace="fragments :: footer"></div>
 		
 	</div>
+	
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$(".link-delete").on("click", function(e){
-				e.preventDefault();
-				link = $(this);
-				//alert($(this).attr("href"));
-				userId = link.attr("userId");
-				$("#yesButton").attr("href", link.attr("href"));
-				$("#confirmText").text("Are you sure you want to delete this user ID " + userId + "?");
-				$("#confirmModal").modal();
-			});
-		});
-		
 		//Clear filter
 		function clearFilter(){
 			window.location = "[[@{/users}]]";

@@ -1,3 +1,4 @@
+/////////////////////////////////////////////This is for user_form.html///////////////////////////////////////////////////////
 $(document).ready(function() {
 	$("#buttonCancel").on("click", function() {
 		window.location = moduleURL;
@@ -53,7 +54,7 @@ function showWarningModal(message) {
 
 
 
-//Dropdown
+////////////////////////////////////////////////////Navigation dropdown Logout for all pages///////////////////////////////
 $(document).ready(function() {
 	$("#logoutLink").on("click", function(e) {
 		e.preventDefault();
@@ -91,3 +92,18 @@ function customizeTabs() {
 	    window.location.hash = e.target.hash;
 	})	
 }
+
+
+
+////////////////////////////////////////////////////////////This is for users.html//////////////////////////////////////////////
+$(document).ready(function(){
+	$(".link-delete").on("click", function(e){
+		e.preventDefault();
+		link = $(this);
+		//alert($(this).attr("href"));
+		userId = link.attr("userId");
+		$("#yesButton").attr("href", link.attr("href"));
+		$("#confirmText").text("Are you sure you want to delete this user ID " + userId + "?");
+		$("#confirmModal").modal();
+	});
+});

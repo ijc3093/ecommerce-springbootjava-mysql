@@ -68,7 +68,7 @@ public class EcommerceUserDetails implements UserDetails {
 	}
 	
 	public String getFullname() {
-		return this.user.getFirstName() + "" + this.user.getLastName();
+		return this.user.getFirstName() + " " + this.user.getLastName();
 	}
 
 }

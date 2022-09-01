@@ -109,12 +109,8 @@ public class UserController {
 				if(user.getPhotos().isEmpty()) user.setPhotos(null);
 				service.save(user);
 			}
-			
 			redirectAttributes.addFlashAttribute("message", "The user has been saved successfully.");
-			
-			return getRedirectURLtoAffectedUser(user); 
-			
-			
+			return getRedirectURLtoAffectedUser(user); 		
 	}
 
 	private String getRedirectURLtoAffectedUser(User user) {
@@ -125,7 +121,7 @@ public class UserController {
 	//Edit
 	@GetMapping("/users/edit/{id}")
 	public String editUser(@PathVariable(name = "id") Integer id, RedirectAttributes redirectAttributes, Model model) {
-		try {
+		try{
 			User user = service.get(id);
 			List<Role> listRoles = service.listRoles();
 			
@@ -138,7 +134,6 @@ public class UserController {
 			redirectAttributes.addFlashAttribute("message", ex.getMessage());
 			return "redirect:/users";
 		}
-		
 	}
 	
 	//Delete

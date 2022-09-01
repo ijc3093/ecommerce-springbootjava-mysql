@@ -57,31 +57,33 @@ public class UserService {
 	}
 
 	public User save(User user) {
-		boolean isUpatingUser = (user.getId() != null);
-		if(isUpatingUser) {
+		boolean isUpdatingUser = (user.getId() != null);
+		
+		if (isUpdatingUser) {
 			User existingUser = userRepo.findById(user.getId()).get();
 			
-			if(user.getPassword().isEmpty()) {
+			if (user.getPassword().isEmpty()) {
 				user.setPassword(existingUser.getPassword());
-			}else {
-				encodePassword(user);   
+			} else {
+				encodePassword(user);
 			}
-		}else {
+			
+		} else {		
 			encodePassword(user);
 		}
-		encodePassword(user);
+		
 		return userRepo.save(user);
 	}
 	
 	public User updateAccount(User userInForm) {
 		User userInDB = userRepo.findById(userInForm.getId()).get();
 		
-		if(!userInForm.getPassword().isEmpty()) {
+		if (!userInForm.getPassword().isEmpty()) {
 			userInDB.setPassword(userInForm.getPassword());
 			encodePassword(userInDB);
 		}
 		
-		if(userInForm.getPhotos() != null) {
+		if (userInForm.getPhotos() != null) {
 			userInDB.setPhotos(userInForm.getPhotos());
 		}
 		
@@ -91,7 +93,7 @@ public class UserService {
 		return userRepo.save(userInDB);
 	}
 	
-	public void encodePassword(User user) {
+	private void encodePassword(User user) {
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
 	}
